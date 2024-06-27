@@ -93,6 +93,7 @@ Test that you can actually establish a connection with the UR.
 1. In the same Python REPL as before, run: `rtde_c = rtde_control.RTDEControlInterface("your.UR.ip.here")`.
    If it says "Please enable remote control on the robot!" this is good - it successfully talked to the robot!
    If it says "No such host" or "Connection timeout" or "Connection refused" or other such, this is bad. See the troubleshooting section.
+1. Ensure that the "Power" outlet is connected to the router. If it isn't you will see a time out message when pinging the IP address in the command line or an error message on the robot arm's console ("Not connected to network!") next to the IP address.
 
 ### Using the library
 
@@ -108,6 +109,14 @@ So, for example, to record two different trials, you might do `python record_dat
 
 You can modify the example to fit your use case: For example, to narrow down the variables that get recorded, change `rtde_r.startFileRecording(args.output)` in the record data example to
 `rtde_r.startFileRecording(args.output, ['actual_q', 'actual_TCP_pose', 'whatever_other_stuff'])`. Or you could change the default frequency, etc.
+
+### Starting a new session
+If you restart your laptop and need to set up the program again (once everything is installed, set up, and was working), open Visual Studio again and open the "ur_rtde" project. Navigate to the Python Environments by going to Tools > Python > Python Environments. Make sure that you select "venv" as the environment. 
+
+Next, open Git and navigate the folder using the following commands in order on the command line:
+`cd ur_rtde` > `source venv/Scripts/activate` > `cd examples` > `cd py`
+
+Then, follow the instructions above as normal by first checking that there is connection established between the robot arm and your laptop by pinging the IP address (it should return a message stating the bit rate of data transfer) and enterring the command to save the robot arm data to the .csv file. An example image of the sample git commands used to obtain the force output is located in the "Images" folder to this repository.
 
 ### Troubleshooting and random notes
 
